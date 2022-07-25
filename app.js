@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const tasks = require("./routes/tasks");
-
+const connectDB = require("./db/connect");
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -13,4 +13,13 @@ app.get("/health", (req, res) => {
 });
 app.use("/api/v1/tasks", tasks);
 
-app.listen(port, console.log(`Listening on port ${port}....`));
+const start = async () => {
+  try {
+    await connectDB();
+    app.listen(port, console.log(`Listening on port ${port}....`));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();

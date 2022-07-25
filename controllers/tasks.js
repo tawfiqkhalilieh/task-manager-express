@@ -2,19 +2,21 @@ const getAllTasks = (req, res) => {
   res.send("All Items");
 };
 
-const createTask = (res, req) => {
-  res.send("Task Created");
+const createTask = (req, res) => {
+  res.json(req.body);
 };
 
-const getTask = (res, req) => {
-  res.send("Task");
+const getTask = (req, res) => {
+  res.json({
+    id: req.params.id,
+  });
 };
 
-const updateTask = (res, req) => {
-  res.send("Task");
+const updateTask = (req, res) => {
+  res.send("Update Task");
 };
 
-const deleteTask = (res, req) => {
+const deleteTask = (req, res) => {
   res.send("Task Deleted");
 };
 module.exports = {

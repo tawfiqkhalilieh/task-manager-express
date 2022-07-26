@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const port = 3000;
@@ -15,7 +16,7 @@ app.use("/api/v1/tasks", tasks);
 
 const start = async () => {
   try {
-    await connectDB();
+    await connectDB(process.env.MongoURI);
     app.listen(port, console.log(`Listening on port ${port}....`));
   } catch (error) {
     console.log(error);
